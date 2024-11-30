@@ -1,0 +1,12 @@
+ref rEquipper
+ref rUnequipped
+
+Begin Function {rEquipper, rUnequipped}
+
+	; Stop game loop
+	if eval IsFormValid rUnequipped && GetType rUnequipped == 40
+		SGMLC (CompileScript "AimCollisionIndicator\GameLoop.gek") 0
+		SetUIFloatAlt "HUDMainMenu\AimCollision\_Dist" 10000
+	endif
+
+end

@@ -1,0 +1,11 @@
+ref rEquipper
+ref rEquipped
+
+Begin Function {rEquipper, rEquipped}
+
+	; Calculate ProjectileNode offset from SightingNode
+	if eval IsFormValid rEquipped && GetType rEquipped == 40 && (ModelHasBlock rEquipped "ProjectileNode" || ModelHasBlock rEquipped "##ProjectileNode")
+		CallAfterFrames 2 (CompileScript "AimCollisionIndicator\CalcOffset.gek") 0 rEquipped
+	endif
+
+end

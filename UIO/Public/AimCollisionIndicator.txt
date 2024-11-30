@@ -1,0 +1,2 @@
+Stentorious\AimCollisionIndicator.xml::HUDMainMenu
+true

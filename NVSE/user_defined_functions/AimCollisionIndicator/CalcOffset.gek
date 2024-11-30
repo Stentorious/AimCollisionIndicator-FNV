@@ -1,0 +1,55 @@
+ref rEquipped
+
+float fProj1stPosX
+float fProj3rdPosX
+float fPosY
+float fPosZ
+float fRotX
+float fRotY
+float fRotZ
+float fSightPosX
+string_var sNode
+
+Begin Function {rEquipped}
+
+	; ProjectileNode type
+	if eval ModelHasBlock Player "ProjectileNode"
+		sNode = "ProjectileNode"
+	else
+		sNode = "##ProjectileNode"
+	endif
+
+	; Normalize node rotation
+	Player.GetNifRotAlt (sNode) (fRotX) (fRotY) (fRotZ) 0 2
+	if eval fRotX < 0.01 && fRotX > -0.01 && fRotY < 0.01 && fRotY > -0.01 && fRotZ == 90
+		Player.SetNifRot (sNode) 90 0 90 0 1
+		Player.SetNifRot (sNode) 90 0 90 0 2
+	endif
+
+	; Weapons with ##SightingNode
+	if eval ModelHasBlock rEquipped "##SightingNode"
+
+		; 3rd person
+		Player.GetNifTransAlt (sNode) (fProj3rdPosX) (fPosY) (fPosZ) 0 1
+		Player.GetNifTransAlt "##SightingNode" (fSightPosX) (fPosY) (fPosZ) 0 1
+		fSightPosX -= (fProj3rdPosX + 25)
+		Goo1.AuxVarSetFlt "*AimColOffset" (fSightPosX * -1) 0
+
+		; 1st person
+		Player.GetNifTransAlt (sNode) (fProj1stPosX) (fPosY) (fPosZ) 0 2
+		Player.GetNifTransAlt "##SightingNode" (fSightPosX) (fPosY) (fPosZ) 0 2
+		fSightPosX -= (fProj1stPosX + 15)
+		Goo1.AuxVarSetFlt "*AimColOffset" (fSightPosX * -1) 1
+
+	; Weapons without ##SightingNode
+	else
+		Goo1.AuxVarSetFlt "*AimColOffset" 75 0
+		Goo1.AuxVarSetFlt "*AimColOffset" 65 1
+	endif
+
+	; Start game loop
+	SGMLC (CompileScript "AimCollisionIndicator\GameLoop.gek") 1 1 9
+
+	sv_Destruct sNode
+
+end

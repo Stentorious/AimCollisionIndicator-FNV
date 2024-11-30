@@ -1,0 +1,90 @@
+<image name="AimCollision">
+	<visible>
+		<copy src="ReticleCenter" trait="visible" />
+		<or src="AmmoTypeLabel" trait="visible" />
+		<or src="ActionPoints" trait="visible" />
+		<or src="HitPoints" trait="visible" />
+		<and>
+			<copy src="me()" trait="_Dist"/>
+			<lt src="me()" trait="_DistMax"/>
+		</and>
+		<and>
+			<copy src="me()" trait="_Actor"/> <neq> 1 </neq>
+			<or src="me()" trait="_VisActor"/>
+		</and>
+		<and>
+			<copy src="me()" trait="_Aiming"/> <neq> 0 </neq>
+			<or>
+				<copy src="me()" trait="_POV"/> <eq> 1 </eq>
+				<and src="me()" trait="_VisHip1st"/>
+			</or>
+			<or>
+				<copy src="me()" trait="_POV"/> <eq> 0 </eq>
+				<and src="me()" trait="_VisHip3rd"/>
+			</or>
+		</and>
+		<and>
+			<copy src="me()" trait="_Aiming"/> <neq> 1 </neq>
+			<or>
+				<copy src="me()" trait="_POV"/> <eq> 1 </eq>
+				<and src="me()" trait="_VisAim1st"/>
+			</or>
+			<or>
+				<copy src="me()" trait="_POV"/> <eq> 0 </eq>
+				<and src="me()" trait="_VisAim3rd"/>
+			</or>
+		</and>
+		<and>
+			<copy src="me()" trait="_Aiming"/> <neq> 2 </neq>
+			<or src="me()" trait="_VisScope"/>
+		</and>
+	</visible>
+	<alpha> 255 </alpha>
+	<depth> 0 </depth>
+	<x>
+		<copy src="me()" trait="_x"/>
+		<mul src="screen()" trait="width"/>
+		<sub>
+			<copy src="me()" trait="width"/>
+			<div> 2 </div>
+		</sub>
+	</x>
+	<y>
+		<copy src="me()" trait="_y"/>
+		<mul src="screen()" trait="height"/>
+		<sub>
+			<copy src="me()" trait="height"/>
+			<div> 2 </div>
+		</sub>
+	</y>
+	<width>
+		<copy> 14 </copy>
+		<mul src="me()" trait="_Scale"/>
+	</width>
+	<height>
+		<copy> 14 </copy>
+		<mul src="me()" trait="_Scale"/>
+	</height>
+	<zoom> &scale; </zoom>
+	<systemcolor> 0 </systemcolor>
+	<red> 255 </red>
+	<green> 255 </green>
+	<blue> 255 </blue>
+	<filename> Interface\Stentorious\AimCollisionIndicator\X.dds </filename>
+
+	<_x> 0 </_x>
+	<_y> 0 </_y>
+	<_Dist> 1 </_Dist>
+	<_POV> 0 </_POV>
+	<_Aiming> 0 </_Aiming>
+	<_Actor> 0 </_Actor>
+	<_Scale> 1 </_Scale>
+	<_DistMax> 1 </_DistMax>
+	<_VisHip1st> 1 </_VisHip1st>
+	<_VisAim1st> 1 </_VisAim1st>
+	<_VisHip3rd> 1 </_VisHip3rd>
+	<_VisAim3rd> 1 </_VisAim3rd>
+	<_VisScope> 1 </_VisScope>
+	<_VisActor> 1 </_VisActor>
+
+</image>
