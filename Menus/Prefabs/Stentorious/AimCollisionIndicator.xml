@@ -9,7 +9,7 @@
 			<lt src="me()" trait="_DistMax"/>
 		</and>
 		<and>
-			<copy src="me()" trait="_Actor"/> <neq> 1 </neq>
+			<copy src="me()" trait="_Actor"/> <eq> 0 </eq>
 			<or src="me()" trait="_VisActor"/>
 		</and>
 		<and>
@@ -37,6 +37,10 @@
 		<and>
 			<copy src="me()" trait="_Aiming"/> <neq> 2 </neq>
 			<or src="me()" trait="_VisScope"/>
+		</and>
+		<and>
+			<copy src="me()" trait="_VisCombat"/> <eq> 0 </eq>
+			<or src="me()" trait="_Combat"/>
 		</and>
 	</visible>
 	<alpha> 255 </alpha>
@@ -78,6 +82,7 @@
 	<_POV> 0 </_POV>
 	<_Aiming> 0 </_Aiming>
 	<_Actor> 0 </_Actor>
+	<_Combat> 0 </_Combat>
 	<_Scale> 1 </_Scale>
 	<_DistMax> 1 </_DistMax>
 	<_VisHip1st> 1 </_VisHip1st>
@@ -86,5 +91,6 @@
 	<_VisAim3rd> 1 </_VisAim3rd>
 	<_VisScope> 1 </_VisScope>
 	<_VisActor> 1 </_VisActor>
+	<_VisCombat> 1 </_VisCombat>
 
 </image>

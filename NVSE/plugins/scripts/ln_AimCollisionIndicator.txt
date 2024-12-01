@@ -28,6 +28,7 @@ if Goo1.AuxVarGetFlt "*AimCol_Init" 0 != 1
 	SetUIFloatAlt "HUDMainMenu\AimCollision\_VisAim3rd" (eval GetINIFloat "Visibility:bAiming3rd" "Stentorious\AimCollisionIndicator.ini")
 	SetUIFloatAlt "HUDMainMenu\AimCollision\_VisScope" (eval GetINIFloat "Visibility:bScoped" "Stentorious\AimCollisionIndicator.ini")
 	SetUIFloatAlt "HUDMainMenu\AimCollision\_VisActor" (eval GetINIFloat "Visibility:bActor" "Stentorious\AimCollisionIndicator.ini")
+	SetUIFloatAlt "HUDMainMenu\AimCollision\_VisCombat" (eval GetINIFloat "Visibility:bCombat" "Stentorious\AimCollisionIndicator.ini")
 	SetUIFloatAlt "HUDMainMenu\AimCollision\_DistMax" ((GetMaxOf 0.5 (GetMinOf 5 (GetINIFloat "Visibility:fDistance" "Stentorious\AimCollisionIndicator.ini"))) * 69.99104)
 
 	; Set icon texture

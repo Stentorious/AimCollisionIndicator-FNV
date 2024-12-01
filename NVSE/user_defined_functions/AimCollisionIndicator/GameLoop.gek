@@ -97,6 +97,9 @@ Begin Function {}
 			endif
 			SetUIFloatAlt "HUDMainMenu\AimCollision\_Actor" iActor
 
+			; Combat
+			SetUIFloatAlt "HUDMainMenu\AimCollision\_Combat" (eval Player.IsInCombat)
+
 		else
 			SetUIFloatAlt "HUDMainMenu\AimCollision\_Dist" 10000
 		endif
