@@ -21,7 +21,8 @@ if Goo1.AuxVarGetFlt "*AimCol_Init" 0 != 1
 	Goo1.AuxVarSetFlt "*AimCol_Init" 1 1
 
 	; Load INI settings
-	SetUIFloatAlt "HUDMainMenu\AimCollision\_Scale" (GetMaxOf 0.5 (GetMinOf 2 (GetINIFloat "Indicator:fScale" "Stentorious\AimCollisionIndicator.ini")))
+	SetUIFloatAlt "HUDMainMenu\AimCollision\_Scale" (GetMaxOf 0.25 (GetMinOf 2 (GetINIFloat "Indicator:fScale" "Stentorious\AimCollisionIndicator.ini")))
+	SetUIFloatAlt "HUDMainMenu\AimCollision\alpha" ((GetMaxOf 0.25 (GetMinOf 1 (GetINIFloat "Indicator:fAlpha" "Stentorious\AimCollisionIndicator.ini"))) * 255)
 	SetUIFloatAlt "HUDMainMenu\AimCollision\_VisHip1st" (eval GetINIFloat "Visibility:bHipFire1st" "Stentorious\AimCollisionIndicator.ini")
 	SetUIFloatAlt "HUDMainMenu\AimCollision\_VisAim1st" (eval GetINIFloat "Visibility:bAiming1st" "Stentorious\AimCollisionIndicator.ini")
 	SetUIFloatAlt "HUDMainMenu\AimCollision\_VisHip3rd" (eval GetINIFloat "Visibility:bHipFire3rd" "Stentorious\AimCollisionIndicator.ini")
@@ -32,25 +33,28 @@ if Goo1.AuxVarGetFlt "*AimCol_Init" 0 != 1
 	SetUIFloatAlt "HUDMainMenu\AimCollision\_DistMax" ((GetMaxOf 0.5 (GetMinOf 5 (GetINIFloat "Visibility:fDistance" "Stentorious\AimCollisionIndicator.ini"))) * 69.99104)
 
 	; Set icon texture
-	if GetINIFloat "Indicator:iType" "Stentorious\AimCollisionIndicator.ini" == 0
-		SetUIStringAlt "HUDMainMenu\AimCollision\filename" "Interface\Stentorious\AimCollisionIndicator\O.dds"
+	int iTemp = GetINIFloat "Indicator:iType" "Stentorious\AimCollisionIndicator.ini"
+	if iTemp == 0
+		SetUIStringAlt "HUDMainMenu\AimCollision\filename" "Interface\Stentorious\AimCollisionIndicator\Cross.dds"
+	elseif iTemp == 1
+		SetUIStringAlt "HUDMainMenu\AimCollision\filename" "Interface\Stentorious\AimCollisionIndicator\Circle.dds"
 	else
-		SetUIStringAlt "HUDMainMenu\AimCollision\filename" "Interface\Stentorious\AimCollisionIndicator\X.dds"
+		SetUIStringAlt "HUDMainMenu\AimCollision\filename" "Interface\Stentorious\AimCollisionIndicator\Dot.dds"
 	endif
 
 	; Set icon color
 	string_var sINI = GetINIString "Indicator:iColor" "Stentorious\AimCollisionIndicator.ini"
-	int iSystem = 1
 	int iLength = Sv_Length sINI
+	iTemp = 1
 	if eval iLength == 6 && TestExpr (ToNumber sINI 1 1)
 		SetUIFloatAlt "HUDMainMenu\AimCollision\red" (ToNumber (sINI[0:1]) 1)
 		SetUIFloatAlt "HUDMainMenu\AimCollision\green" (ToNumber (sINI[2:3]) 1)
 		SetUIFloatAlt "HUDMainMenu\AimCollision\blue" (ToNumber (sINI[4:5]) 1)
-		iSystem = 0
+		iTemp = 0
 	elseif eval iLength == 1 && TestExpr (ToNumber sINI 0 1)
-		iSystem = ToNumber sINI
+		iTemp = ToNumber sINI
 	endif
-	SetUIFloatAlt "HUDMainMenu\AimCollision\systemcolor" iSystem
+	SetUIFloatAlt "HUDMainMenu\AimCollision\systemcolor" iTemp
 
 	Sv_Destruct sINI
 
