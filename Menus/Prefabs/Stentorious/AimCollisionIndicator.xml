@@ -42,6 +42,7 @@
 			<copy src="me()" trait="_VisCombat"/> <eq> 0 </eq>
 			<or src="me()" trait="_Combat"/>
 		</and>
+		<and src="me()" trait="_VisPA" />
 	</visible>
 	<alpha> 255 </alpha>
 	<depth> 0 </depth>
@@ -92,5 +93,6 @@
 	<_VisScope> 1 </_VisScope>
 	<_VisActor> 1 </_VisActor>
 	<_VisCombat> 1 </_VisCombat>
+	<_VisPA> 1 </_VisPA>
 
 </image>
