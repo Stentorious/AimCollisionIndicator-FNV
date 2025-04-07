@@ -1,6 +1,5 @@
 int iPOV
 int iAim
-int iActor
 float fOffset
 float fDistance
 float fDistanceMax
@@ -91,11 +90,7 @@ Begin Function {}
 			SetUIFloatAlt "HUDMainMenu\AimCollision\_POV" (iPOV - 1)
 
 			; Actor visibility
-			rCrosshair = GetCrosshairRefEx
-			if eval IsFormValid rCrosshair && IsReference rCrosshair && (rCrosshair.GetType == 42 || rCrosshair.GetType == 43)
-				iActor = 1
-			endif
-			SetUIFloatAlt "HUDMainMenu\AimCollision\_Actor" iActor
+			SetUIFloatAlt "HUDMainMenu\AimCollision\_Actor" (eval IsReference (rCrosshair = GetCrosshairRef) && (rCrosshair.GetType == 42 || rCrosshair.GetType == 43))
 
 			; Combat
 			SetUIFloatAlt "HUDMainMenu\AimCollision\_Combat" (eval Player.IsInCombat)
