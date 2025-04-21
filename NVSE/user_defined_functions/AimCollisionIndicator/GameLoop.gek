@@ -20,89 +20,84 @@ string_var sNode
 
 Begin Function {}
 
-	; Valid weapon
-	if eval Player.IsWeaponOut && Player.IsAnimPlayingEx 4 == 0 && Player.IsAnimPlayingEx 5 == 0 && Player.IsAnimPlayingEx 1 2 == 0
-
-		; ProjectileNode type
-		if eval ModelHasBlock Player "ProjectileNode"
-			sNode = "ProjectileNode"
-		elseif eval ModelHasBlock Player "##ProjectileNode"
-			sNode = "##ProjectileNode"
-		else
-			SetUIFloatAlt "HUDMainMenu\AimCollision\_Dist" 10000
-			return
-		endif
-
-		; Misc
-		iPOV = (eval IsPC1stPerson) + 1
-		fOffset = (Goo1.AuxVarGetFlt "*AimColOffset" (iPOV - 1))
-		fDistanceMax = GetUIFloatAlt "HUDMainMenu\AimCollision\_DistMax"
-
-		; Get ProjectileNode position
-		Player.GetNifTransAlt (sNode) (fBlockPosX) (fBlockPosY) (fBlockPosZ) 1 iPOV
-
-		; Get raycast rotation
-		if eval iPOV == 2
-			Player.GetNifRotAlt "Bip01 Looking" (fBlockRotX) (fBlockRotY) (fBlockRotZ) 3 2
-
-			; B42 Lean compatibility
-			if eval Goo1.AuxVarGetFlt "*B42L11" == 0.3
-				fDistanceMax += 50
-			endif
-		else
-			Player.GetNifRotAlt (sNode) (fBlockRotX) (fBlockRotY) (fBlockRotZ) 3 1
-		endif
-
-		; Shoot raycast backwards to check if ProjectileNode is inside geo
-		GetPointRayCastPos fBlockPosX fBlockPosY fBlockPosZ (fBlockRotX * -1) (fBlockRotZ - 180) (fRayPosX) (fRayPosY) (fRayPosZ) 6 fOffset
-		fDistance = GetVector3DDistance fRayPosX fRayPosY fRayPosZ fBlockPosX fBlockPosY fBlockPosZ
-
-		if eval fDistance <= (fOffset - 0.1)
-			if iPOV == 2
-				fRayPosX = fBlockPosX
-				fRayPosY = fBlockPosY
-				fRayPosZ = fBlockPosZ
-			endif
-			fDistance = 0
-
-		; Raycast
-		else
-			GetPointRayCastPos fBlockPosX fBlockPosY fBlockPosZ fBlockRotX fBlockRotZ (fRayPosX) (fRayPosY) (fRayPosZ) 6 fDistanceMax
-			fDistance = GetVector3DDistance fRayPosX fRayPosY fRayPosZ fBlockPosX fBlockPosY fBlockPosZ
-		endif
-
-		; Ray collided with object
-		if eval fDistance <= (fDistanceMax - 0.1)
-
-			; Display indicator
-			WorldToScreen (fUIPosX) (fUIPosY) (fUIPosZ) (fRayPosX) (fRayPosY) (fRayPosZ) (2)
-			SetUIFloatAlt "HUDMainMenu\AimCollision\_x" fUIPosX
-			SetUIFloatAlt "HUDMainMenu\AimCollision\_y" fUIPosY
-			SetUIFloatAlt "HUDMainMenu\AimCollision\_Dist" 0
-
-			; Aiming state visibility
-			if eval GetPCUsingScope
-				iAim = 2
-			elseif eval GetPCUsingIronSights || IsControlPressed 6
-				iAim = 1
-			endif
-			SetUIFloatAlt "HUDMainMenu\AimCollision\_Aiming" iAim
-			SetUIFloatAlt "HUDMainMenu\AimCollision\_POV" (iPOV - 1)
-
-			; Actor visibility
-			SetUIFloatAlt "HUDMainMenu\AimCollision\_Actor" (eval IsReference (rCrosshair = GetCrosshairRef) && (rCrosshair.GetType == 42 || rCrosshair.GetType == 43))
-
-			; Combat
-			SetUIFloatAlt "HUDMainMenu\AimCollision\_Combat" (eval Player.IsInCombat)
-
-		else
-			SetUIFloatAlt "HUDMainMenu\AimCollision\_Dist" 10000
-		endif
-
-		sv_Destruct sNode
-
+	; Should indicator be displayed
+	if eval Player.IsWeaponOut == 0 || Player.IsAnimPlayingEx 4 || Player.IsAnimPlayingEx 5 || Player.IsAnimPlayingEx 1 2
+		SetUIFloatAlt "HUDMainMenu\AimCollision\_Dist" 10000
+		return
+	elseif eval ModelHasBlock Player "ProjectileNode"
+		sNode = "ProjectileNode"
+	elseif eval ModelHasBlock Player "##ProjectileNode"
+		sNode = "##ProjectileNode"
 	else
 		SetUIFloatAlt "HUDMainMenu\AimCollision\_Dist" 10000
+		return
 	endif
+
+	; Misc
+	iPOV = (eval IsPC1stPerson) + 1
+	fOffset = (Goo1.AuxVarGetFlt "*AimColOffset" (iPOV - 1))
+	fDistanceMax = GetUIFloatAlt "HUDMainMenu\AimCollision\_DistMax"
+
+	; Get ProjectileNode position
+	Player.GetNifTransAlt (sNode) (fBlockPosX) (fBlockPosY) (fBlockPosZ) 1 iPOV
+
+	; Get raycast rotation
+	if eval iPOV == 2
+		Player.GetNifRotAlt "Bip01 Looking" (fBlockRotX) (fBlockRotY) (fBlockRotZ) 3 2
+
+		; B42 Lean compatibility
+		if eval Goo1.AuxVarGetFlt "*B42L11" == 0.3
+			fDistanceMax += 50
+		endif
+	else
+		Player.GetNifRotAlt (sNode) (fBlockRotX) (fBlockRotY) (fBlockRotZ) 3 1
+	endif
+
+	sv_Destruct sNode
+
+	; Shoot raycast backwards to check if ProjectileNode is inside geo
+	GetPointRayCastPos fBlockPosX fBlockPosY fBlockPosZ (fBlockRotX * -1) (fBlockRotZ - 180) (fRayPosX) (fRayPosY) (fRayPosZ) 6 fOffset
+	fDistance = GetVector3DDistance fRayPosX fRayPosY fRayPosZ fBlockPosX fBlockPosY fBlockPosZ
+
+	if eval fDistance <= (fOffset - 0.1)
+		if iPOV == 2
+			fRayPosX = fBlockPosX
+			fRayPosY = fBlockPosY
+			fRayPosZ = fBlockPosZ
+		endif
+		fDistance = 0
+
+	; Raycast
+	else
+		GetPointRayCastPos fBlockPosX fBlockPosY fBlockPosZ fBlockRotX fBlockRotZ (fRayPosX) (fRayPosY) (fRayPosZ) 6 fDistanceMax
+		fDistance = GetVector3DDistance fRayPosX fRayPosY fRayPosZ fBlockPosX fBlockPosY fBlockPosZ
+	endif
+
+	; Ray collided with object
+	if eval fDistance > (fDistanceMax - 0.1)
+		SetUIFloatAlt "HUDMainMenu\AimCollision\_Dist" 10000
+		return
+	endif
+
+	; Display indicator
+	WorldToScreen (fUIPosX) (fUIPosY) (fUIPosZ) (fRayPosX) (fRayPosY) (fRayPosZ) (2)
+	SetUIFloatAlt "HUDMainMenu\AimCollision\_x" fUIPosX
+	SetUIFloatAlt "HUDMainMenu\AimCollision\_y" fUIPosY
+	SetUIFloatAlt "HUDMainMenu\AimCollision\_Dist" 0
+
+	; Aiming state visibility
+	if eval GetPCUsingScope
+		iAim = 2
+	elseif eval GetPCUsingIronSights || IsControlPressed 6
+		iAim = 1
+	endif
+	SetUIFloatAlt "HUDMainMenu\AimCollision\_Aiming" iAim
+	SetUIFloatAlt "HUDMainMenu\AimCollision\_POV" (iPOV - 1)
+
+	; Actor visibility
+	SetUIFloatAlt "HUDMainMenu\AimCollision\_Actor" (eval IsReference (rCrosshair = GetCrosshairRef) && (rCrosshair.GetType == 42 || rCrosshair.GetType == 43))
+
+	; Combat
+	SetUIFloatAlt "HUDMainMenu\AimCollision\_Combat" (eval Player.IsInCombat)
 
 end
