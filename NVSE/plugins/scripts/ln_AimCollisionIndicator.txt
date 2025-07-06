@@ -5,9 +5,8 @@ if Goo1.AuxVarGetFlt "*AimCol_Init" 0 != 1
 	Goo1.AuxVarSetFlt "*AimCol_Init" 1 0
 
 	; Check for requirements
-	if GetNVSEVersion > 5 && GetNVSERevision > 2 && GetNVSEBeta > 9
-	else
-		MessageBoxEx "Aim Collision Indicator missing requirement!%rInstall xNVSE 6.3.10+."
+	if eval GetNVSEVersion < 6 || (GetNVSEVersion == 6 && GetNVSERevision < 4)
+		MessageBoxEx "Aim Collision Indicator missing requirement!%rInstall xNVSE 6.4.0+."
 		return
 	endif
 	if GetPluginVersion "JohnnyGuitarNVSE" < 390
