@@ -1,2 +1,5 @@
-Stentorious\AimCollisionIndicator.xml::HUDMainMenu
+Stentorious\AimCollisionIndicator\Main.xml::HUDMainMenu
+true
+Stentorious\AimCollisionIndicator\JDC.xml::@Prefabs\JDC\JDC.xml::JDC
+#JDC\JDC.xml
 true

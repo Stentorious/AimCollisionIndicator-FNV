@@ -1,0 +1,38 @@
+<x>
+	<copy> 0 </copy>
+	<add>
+		<copy src="me()" trait="_ScreenWidth"/>
+		<div> 2 </div>
+		<onlyif>
+			<not src="sibling(AimCollision)" trait="_JDC"/>
+			<or> <not src="sibling(AimCollision)" trait="visible"/> </or>
+		</onlyif>
+	</add>
+	<add>
+		<copy src="sibling(AimCollision)" trait="_x"/>
+		<mul src="me()" trait="_ScreenWidth"/>
+		<onlyif>
+			<copy src="sibling(AimCollision)" trait="_JDC"/>
+			<and src="sibling(AimCollision)" trait="visible"/>
+		</onlyif>
+	</add>
+</x>
+<y>
+	<copy> 0 </copy>
+	<add>
+		<copy src="me()" trait="_ScreenHeight"/>
+		<div> 2 </div>
+		<onlyif>
+			<not src="sibling(AimCollision)" trait="_JDC"/>
+			<or> <not src="sibling(AimCollision)" trait="visible"/> </or>
+		</onlyif>
+	</add>
+	<add>
+		<copy src="sibling(AimCollision)" trait="_y"/>
+		<mul src="me()" trait="_ScreenHeight"/>
+		<onlyif>
+			<copy src="sibling(AimCollision)" trait="_JDC"/>
+			<and src="sibling(AimCollision)" trait="visible"/>
+		</onlyif>
+	</add>
+</y>

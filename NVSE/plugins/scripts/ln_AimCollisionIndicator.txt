@@ -1,84 +1,81 @@
 ; Aim Collision Indicator - Stentorious
 
+; Update indicator on load
+SetUIFloatAlt "HUDMainMenu\AimCollision\_Dist" 10000
+Call (CompileScript "AimCollisionIndicator\OnEquip.gek") Player (Player.GetEqObj 5)
+
 ; On Game Restart
-if Goo1.AuxVarGetFlt "*AimCol_Init" 0 != 1
-	Goo1.AuxVarSetFlt "*AimCol_Init" 1 0
+if Goo1.AuxVarGetFlt "*AimCol_Init" == 1
+	return
+endif
+Goo1.AuxVarSetFlt "*AimCol_Init" 1
 
-	; Check for requirements
-	if eval GetNVSEVersion < 6 || (GetNVSEVersion == 6 && GetNVSERevision < 4)
-		MessageBoxEx "Aim Collision Indicator missing requirement!%rInstall xNVSE 6.4.0+."
-		return
-	endif
-	if GetPluginVersion "JohnnyGuitarNVSE" < 390
-		MessageBoxEx "Aim Collision Indicator missing requirement!%rInstall latest JohnnyGuitar NVSE plugin."
-		return
-	endif
-	if GetPluginVersion "ShowOffNVSE Plugin" < 145
-		MessageBoxEx "Aim Collision Indicator missing requirement!%rInstall latest ShowOff NVSE plugin."
-		return
-	endif
-	if GetPluginVersion "UI Organizer Plugin" < 230
-		MessageBoxEx "Aim Collision Indicator missing requirement!%rInstall latest User Interface Organizer plugin."
-		return
-	endif
-	Goo1.AuxVarSetFlt "*AimCol_Init" 1 1
+; Check for requirements
+if eval GetNVSEVersion < 6 || (GetNVSEVersion == 6 && GetNVSERevision < 4)
+	MessageBoxEx "Aim Collision Indicator missing requirement!%rInstall xNVSE 6.4.0+."
+	return
+endif
+if GetPluginVersion "JohnnyGuitarNVSE" < 390
+	MessageBoxEx "Aim Collision Indicator missing requirement!%rInstall latest JohnnyGuitar NVSE plugin."
+	return
+endif
+if GetPluginVersion "ShowOffNVSE Plugin" < 145
+	MessageBoxEx "Aim Collision Indicator missing requirement!%rInstall latest ShowOff NVSE plugin."
+	return
+endif
+if GetPluginVersion "UI Organizer Plugin" < 230
+	MessageBoxEx "Aim Collision Indicator missing requirement!%rInstall latest User Interface Organizer plugin."
+	return
+endif
 
-	; Load INI settings
-	SetUIFloatAlt "HUDMainMenu\AimCollision\_Scale" (GetMaxOf 0.25 (GetMinOf 2 (GetINIFloat_Cached "Indicator:fScale" "Stentorious\AimCollisionIndicator.ini")))
-	SetUIFloatAlt "HUDMainMenu\AimCollision\alpha" ((GetMaxOf 0.25 (GetMinOf 1 (GetINIFloat_Cached "Indicator:fAlpha" "Stentorious\AimCollisionIndicator.ini"))) * 255)
-	SetUIFloatAlt "HUDMainMenu\AimCollision\_VisHip1st" (eval GetINIFloat_Cached "Visibility:bHipFire1st" "Stentorious\AimCollisionIndicator.ini")
-	SetUIFloatAlt "HUDMainMenu\AimCollision\_VisAim1st" (eval GetINIFloat_Cached "Visibility:bAiming1st" "Stentorious\AimCollisionIndicator.ini")
-	SetUIFloatAlt "HUDMainMenu\AimCollision\_VisHip3rd" (eval GetINIFloat_Cached "Visibility:bHipFire3rd" "Stentorious\AimCollisionIndicator.ini")
-	SetUIFloatAlt "HUDMainMenu\AimCollision\_VisAim3rd" (eval GetINIFloat_Cached "Visibility:bAiming3rd" "Stentorious\AimCollisionIndicator.ini")
-	SetUIFloatAlt "HUDMainMenu\AimCollision\_VisScope" (eval GetINIFloat_Cached "Visibility:bScoped" "Stentorious\AimCollisionIndicator.ini")
-	SetUIFloatAlt "HUDMainMenu\AimCollision\_VisActor" (eval GetINIFloat_Cached "Visibility:bActor" "Stentorious\AimCollisionIndicator.ini")
-	SetUIFloatAlt "HUDMainMenu\AimCollision\_VisCombat" (eval GetINIFloat_Cached "Visibility:bCombat" "Stentorious\AimCollisionIndicator.ini")
-	SetUIFloatAlt "HUDMainMenu\AimCollision\_DistMax" ((GetMaxOf 0.5 (GetMinOf 5 (GetINIFloat_Cached "Visibility:fDistance" "Stentorious\AimCollisionIndicator.ini"))) * 69.99104)
+; Load INI settings
+SetUIFloatAlt "HUDMainMenu\AimCollision\_Scale" (GetMaxOf 0.25 (GetMinOf 2 (GetINIFloat_Cached "Indicator:fScale" "Stentorious\AimCollisionIndicator.ini" 1.0)))
+SetUIFloatAlt "HUDMainMenu\AimCollision\alpha" ((GetMaxOf 0.25 (GetMinOf 1 (GetINIFloat_Cached "Indicator:fAlpha" "Stentorious\AimCollisionIndicator.ini" 1.0))) * 255)
+SetUIFloatAlt "HUDMainMenu\AimCollision\_VisHip1st" (eval GetINIFloat_Cached "Visibility:bHipFire1st" "Stentorious\AimCollisionIndicator.ini" 1)
+SetUIFloatAlt "HUDMainMenu\AimCollision\_VisAim1st" (eval GetINIFloat_Cached "Visibility:bAiming1st" "Stentorious\AimCollisionIndicator.ini" 1)
+SetUIFloatAlt "HUDMainMenu\AimCollision\_VisHip3rd" (eval GetINIFloat_Cached "Visibility:bHipFire3rd" "Stentorious\AimCollisionIndicator.ini" 0)
+SetUIFloatAlt "HUDMainMenu\AimCollision\_VisAim3rd" (eval GetINIFloat_Cached "Visibility:bAiming3rd" "Stentorious\AimCollisionIndicator.ini" 1)
+SetUIFloatAlt "HUDMainMenu\AimCollision\_VisScope" (eval GetINIFloat_Cached "Visibility:bScoped" "Stentorious\AimCollisionIndicator.ini" 1)
+SetUIFloatAlt "HUDMainMenu\AimCollision\_VisActor" (eval GetINIFloat_Cached "Visibility:bActor" "Stentorious\AimCollisionIndicator.ini" 0)
+SetUIFloatAlt "HUDMainMenu\AimCollision\_VisCombat" (eval GetINIFloat_Cached "Visibility:bCombat" "Stentorious\AimCollisionIndicator.ini" 0)
+SetUIFloatAlt "HUDMainMenu\AimCollision\_DistMax" ((GetMaxOf 0.5 (GetMinOf 25 (GetINIFloat_Cached "Visibility:fDistance" "Stentorious\AimCollisionIndicator.ini" 1.5))) * 69.99104)
+Goo1.AuxVarSetFlt "*AimCol_INI" (eval GetINIFloat_Cached "Visibility:bWeaponAnimations" "Stentorious\AimCollisionIndicator.ini" 0) 0
 
-	; Set icon texture
-	string_var sINI = "Interface\Stentorious\AimCollisionIndicator\"
-	int iTemp = GetINIFloat_Cached "Indicator:iType" "Stentorious\AimCollisionIndicator.ini"
-	if iTemp == 0
-		sINI += "Cross.dds"
-	elseif iTemp == 1
-		sINI += "Circle.dds"
-	else
-		sINI += "Dot.dds"
-	endif
-	SetUIStringAlt "HUDMainMenu\AimCollision\filename" (sINI)
+; Update indictor on (un)equip
+SetEventHandler "OnEquip" (CompileScript "AimCollisionIndicator\OnEquip.gek") "first"::Player
+SetEventHandler "OnUnequip" (CompileScript "AimCollisionIndicator\OnUnequip.gek") "first"::Player
 
-	; Set icon color
-	sINI = GetINIString_Cached "Indicator:iColor" "Stentorious\AimCollisionIndicator.ini"
-	int iLength = Sv_Length sINI
-	iTemp = 1
-	if eval iLength == 6 && TestExpr (ToNumber sINI 1 1)
-		SetUIFloatAlt "HUDMainMenu\AimCollision\red" (ToNumber (sINI[0:1]) 1)
-		SetUIFloatAlt "HUDMainMenu\AimCollision\green" (ToNumber (sINI[2:3]) 1)
-		SetUIFloatAlt "HUDMainMenu\AimCollision\blue" (ToNumber (sINI[4:5]) 1)
-		iTemp = 0
-	elseif eval iLength == 1 && TestExpr (ToNumber sINI 0 1)
-		iTemp = ToNumber sINI
-	endif
-	SetUIFloatAlt "HUDMainMenu\AimCollision\systemcolor" iTemp
-
-	; Clear INI cache
+; JDC support
+if eval GetINIFloat_Cached "Indicator:bJDCSupport" "Stentorious\AimCollisionIndicator.ini" 0
+	SetUIFloatAlt "HUDMainMenu\AimCollision\_JDC" 1
+	SetUIFloatAlt "HUDMainMenu\AimCollision\alpha" 0
 	CloseFileSO "Stentorious\AimCollisionIndicator.ini" 0
-
-	Sv_Destruct sINI
-
+	return
 endif
 
-; On game load
-if eval Goo1.AuxVarGetFlt "*AimCol_Init" 1 == 1
-
-	; Hide indicator
-	SetUIFloatAlt "HUDMainMenu\AimCollision\_Dist" 10000
-
-	; Update model on load
-	Call (CompileScript "AimCollisionIndicator\OnEquip.gek") Player (Player.GetEqObj 5)
-
-	; Update indictor on (un)equip
-	SetEventHandlerAlt "OnEquip" (CompileScript "AimCollisionIndicator\OnEquip.gek") 1::Player
-	SetEventHandlerAlt "OnUnequip" (CompileScript "AimCollisionIndicator\OnUnequip.gek") 1::Player
-
+; Set icon texture
+string_var sINI = "Interface\Stentorious\AimCollisionIndicator\"
+int iTemp = GetINIFloat_Cached "Indicator:iType" "Stentorious\AimCollisionIndicator.ini" 0
+if iTemp == 0
+	sINI += "Cross.dds"
+elseif iTemp == 1
+	sINI += "Circle.dds"
+else
+	sINI += "Dot.dds"
 endif
+SetUIStringAlt "HUDMainMenu\AimCollision\filename" (sINI)
+
+; Set icon color
+sINI = GetINIString_Cached "Indicator:iColor" "Stentorious\AimCollisionIndicator.ini" "2"
+if eval (int iLength = Sv_Length sINI) == 6 && TestExpr (ToNumber sINI 1 1)
+	SetUIFloatAlt "HUDMainMenu\AimCollision\red" (ToNumber (sINI[0:1]) 1)
+	SetUIFloatAlt "HUDMainMenu\AimCollision\green" (ToNumber (sINI[2:3]) 1)
+	SetUIFloatAlt "HUDMainMenu\AimCollision\blue" (ToNumber (sINI[4:5]) 1)
+elseif eval iLength == 1 && TestExpr (ToNumber sINI 0 1)
+	SetUIFloatAlt "HUDMainMenu\AimCollision\systemcolor" (ToNumber sINI)
+endif
+
+; Clear INI cache
+CloseFileSO "Stentorious\AimCollisionIndicator.ini" 0
+
+Sv_Destruct sINI
