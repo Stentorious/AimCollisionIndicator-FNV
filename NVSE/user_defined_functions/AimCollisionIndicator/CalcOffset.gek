@@ -15,8 +15,10 @@ Begin Function {rEquipped}
 	; ProjectileNode type
 	if eval ModelHasBlock Player "ProjectileNode"
 		sNode = "ProjectileNode"
-	else
+	elseif eval ModelHasBlock Player "##ProjectileNode"
 		sNode = "##ProjectileNode"
+	else
+		return
 	endif
 
 	; Normalize node rotation
