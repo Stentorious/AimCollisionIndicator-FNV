@@ -7,7 +7,7 @@
 - UI indicator showing when your weapon's projectile is likely to collide with world geometry.
 
 ## Configuration
-- Icon type
+- Icon style
 - Icon scale
 - Icon color
 - Visibility distance

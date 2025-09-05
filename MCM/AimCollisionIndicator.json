@@ -22,10 +22,10 @@
                     "type": 0
 				},
                 "3": {
-                    "title": "$IconTypeMouse",
+                    "title": "$IconStyle",
                     "type": 1,
                     "enable": 1,
-                    "mouse": "$IconTypeMouse",
+                    "mouse": "$IconStyleMouse",
                     "vars": [ { "uiTrait": "HUDMainMenu/AimCollision/_Icon", "configINI": "Indicator:iType", "default": 0 }],
                     "strings": [ "$Cross", "$Circle", "$Dot" ]
                 },
