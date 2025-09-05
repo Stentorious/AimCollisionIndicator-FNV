@@ -6,7 +6,7 @@
 		<or src="HitPoints" trait="visible" />
 		<and>
 			<copy src="me()" trait="_Dist"/>
-			<lt src="me()" trait="_DistMax"/>
+			<lt src="me()" trait="_DistMaxUnit"/>
 		</and>
 		<and>
 			<copy src="me()" trait="_Actor"/> <eq> 0 </eq>
@@ -44,7 +44,14 @@
 		</and>
 		<and src="me()" trait="_VisPA" />
 	</visible>
-	<alpha> 255 </alpha>
+	<alpha>
+		<copy src="me()" trait="_Alpha" />
+		<mul> 255 </mul>
+		<mul>
+			<copy> 1 </copy>
+			<onlyifnot src="me()" trait="_JDC" />
+		</mul>
+	</alpha>
 	<depth> 0 </depth>
 	<x>
 		<copy src="me()" trait="_x"/>
@@ -75,17 +82,18 @@
 	<red> 255 </red>
 	<green> 255 </green>
 	<blue> 255 </blue>
-	<filename> Interface\Stentorious\AimCollisionIndicator\X.dds </filename>
 
+	<!-- Icon traits -->
 	<_x> 0 </_x>
 	<_y> 0 </_y>
-	<_Dist> 1 </_Dist>
+	<_Scale> 1 </_Scale>
+	<_Alpha> 1 </_Alpha>
+
+	<!-- Visibility -->
 	<_POV> 0 </_POV>
 	<_Aiming> 0 </_Aiming>
 	<_Actor> 0 </_Actor>
 	<_Combat> 0 </_Combat>
-	<_Scale> 1 </_Scale>
-	<_DistMax> 1 </_DistMax>
 	<_VisHip1st> 1 </_VisHip1st>
 	<_VisAim1st> 1 </_VisAim1st>
 	<_VisHip3rd> 1 </_VisHip3rd>
@@ -95,5 +103,23 @@
 	<_VisCombat> 1 </_VisCombat>
 	<_VisPA> 1 </_VisPA>
 	<_JDC> 0 </_JDC>
+
+	<!-- Distance calc -->
+	<_Dist> 1 </_Dist>
+	<_DistMaxUnit>
+		<copy src="me()" trait="_DistMax"/>
+		<mul> 69.99104 </mul>
+	</_DistMaxUnit>
+	<_DistMax> 1 </_DistMax>
+
+	<!-- Icon type -->
+	<_Icon> 0 </_Icon>
+	<_filename_0> Interface\Stentorious\AimCollisionIndicator\Cross.dds </_filename_0>
+	<_filename_1> Interface\Stentorious\AimCollisionIndicator\Circle.dds </_filename_1>
+	<_filename_2> Interface\Stentorious\AimCollisionIndicator\Dot.dds </_filename_2>
+	<filename>
+		<copy src="me()" trait="_Icon"/>
+		<copy src="me()" trait="_filename_"/>
+	</filename>
 
 </image>

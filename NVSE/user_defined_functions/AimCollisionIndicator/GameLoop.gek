@@ -21,7 +21,7 @@ string_var sNode
 Begin Function {}
 
 	; Should indicator be displayed
-	if eval Player.IsWeaponOut == 0 || (Goo1.AuxVarGetFlt "*AimCol_INI" 0 == 0 && (Player.IsAnimPlayingEx 4 || Player.IsAnimPlayingEx 5 || Player.IsAnimPlayingEx 1 2))
+	if eval Player.IsWeaponOut == 0 || (Goo1.AuxVarGetFlt "*_AimCol_INI" 0 == 0 && (Player.IsAnimPlayingEx 4 || Player.IsAnimPlayingEx 5 || Player.IsAnimPlayingEx 1 2))
 		SetUIFloatAlt "HUDMainMenu\AimCollision\_Dist" 10000
 		return
 	elseif eval ModelHasBlock Player "ProjectileNode"
@@ -36,7 +36,7 @@ Begin Function {}
 	; Misc
 	iPOV = (eval IsPC1stPerson) + 1
 	fOffset = (Goo1.AuxVarGetFlt "*AimColOffset" (iPOV - 1))
-	fDistanceMax = GetUIFloatAlt "HUDMainMenu\AimCollision\_DistMax"
+	fDistanceMax = GetUIFloatAlt "HUDMainMenu\AimCollision\_DistMaxUnit"
 
 	; Get ProjectileNode position
 	Player.GetNifTransAlt (sNode) (fBlockPosX) (fBlockPosY) (fBlockPosZ) 1 iPOV

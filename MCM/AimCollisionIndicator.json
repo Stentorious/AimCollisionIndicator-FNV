@@ -1,0 +1,152 @@
+{
+    "modName": "AimCollisionIndicator",
+    "displayName": "$modDisplayName",
+	"description": "$modDescription",
+    "saveFile": "Stentorious/AimCollisionIndicator.ini",
+    "minMCMVersion": 1.00,
+    "minModVersion": 1.00,
+    "requirements": [
+        { "type": "file", "file": "NVSE/plugins/scripts/ln_AimCollisionIndicator.txt" }
+    ],
+    "submenus": {
+        "0": {
+            "listTitle": "$modDisplayName",
+            "pageTitle": "$modDisplayName",
+            "active": 1,
+            "columns": 2,
+            "enable": 1,
+            "options": {
+                "1": {
+                    "title": "$Indicator",
+                    "enable": 1,
+                    "type": 0
+				},
+                "3": {
+                    "title": "$IconTypeMouse",
+                    "type": 1,
+                    "enable": 1,
+                    "mouse": "$IconTypeMouse",
+                    "vars": [ { "uiTrait": "HUDMainMenu/AimCollision/_Icon", "configINI": "Indicator:iType", "default": 0 }],
+                    "strings": [ "$Cross", "$Circle", "$Dot" ]
+                },
+                "5": {
+                    "title": "$IconScale",
+                    "type": 2.5,
+                    "enable": 1,
+                    "mouse": "$IconScaleMouse",
+                    "vars": [ { "uiTrait": "HUDMainMenu/AimCollision/_Scale", "configINI": "Indicator:fScale", "default": 1 }],
+                    "scale": { "valueDecimal": 2, "valueIncrement": 0.01, "valueMin": 0.5, "valueMax": 2 }
+                },
+                "7": {
+                    "title": "$IconAlpha",
+                    "type": 2.5,
+                    "enable": 1,
+                    "mouse": "$IconAlphaMouse",
+					"vars": [ { "uiTrait": "HUDMainMenu/AimCollision/_Alpha", "configINI": "Indicator:fAlpha", "default": 1 }],
+					"scale": { "valueDecimal": 2, "valueIncrement": 0.01, "valueMin": 0.1, "valueMax": 1 }
+                },
+                "9": {
+                    "title": "$IconColor",
+                    "type": 1,
+                    "enable": 1,
+                    "mouse": "$IconColorMouse",
+                    "vars": [{ "uiTrait": "HUDMainMenu/AimCollision/systemcolor", "configINI": "Color:iSystemcolor", "default": 2 }],
+                    "strings": [ "$Custom", "$HUD", "$HUDAlt", "$Terminal", "$PipBoy", "$PauseMenu"]
+                },
+                "11": {
+                    "title": "$CustomColor",
+                    "type": 9,
+                    "state": { "uiTrait": "HUDMainMenu/AimCollision/systemcolor", "value": 0, "disable": 1 },
+                    "mouse": "$CustomColorMouse",
+                    "vars": [
+                        { "uiTrait": "HUDMainMenu/AimCollision/red", "configINI": "Color:iRed", "default": 0 },
+						{ "uiTrait": "HUDMainMenu/AimCollision/green", "configINI": "Color:iGreen", "default": 0 },
+						{ "uiTrait": "HUDMainMenu/AimCollision/blue", "configINI": "Color:iBlue", "default": 0 }
+					]
+                },
+                "15": {
+                    "title": "$EXPERIMENTAL",
+                    "enable": 1,
+                    "type": 0
+				},
+                "17": {
+                    "title": "$JDCSupport",
+                    "enable": 1,
+                    "type": 5,
+                    "mouse": "$JDCMouse",
+                    "vars": [ { "uiTrait": "HUDMainMenu/AimCollision/_JDC", "configINI": "Indicator:bJDCSupport", "default": 0 }]
+				},
+                "2": {
+                    "title": "$Visibility",
+                    "enable": 1,
+                    "type": 0
+				},
+                "4": {
+                    "title": "$Distance",
+                    "enable": 1,
+                    "type": 2,
+                    "mouse": "$DistanceMouse",
+					"suffix": "m",
+                    "vars": [ { "uiTrait": "HUDMainMenu/AimCollision/_DistMax", "configINI": "Visibility:fDistance", "default": 1.5 }],
+                    "scale": { "valueDecimal": 1, "valueIncrement": 0.5, "valueMin": 1, "valueMax": 25, "suffix": "m" }
+				},
+                "6": {
+                    "title": "$HipFire1st",
+                    "enable": 1,
+                    "type": 5,
+                    "mouse": "$HipFire1stMouse",
+                    "vars": [ { "uiTrait": "HUDMainMenu/AimCollision/_VisHip1st", "configINI": "Visibility:bHipFire1st", "default": 1 }]
+				},
+                "8": {
+                    "title": "$HipFire3rd",
+                    "enable": 1,
+                    "type": 5,
+                    "mouse": "$HipFire3rdMouse",
+                    "vars": [ { "uiTrait": "HUDMainMenu/AimCollision/_VisHip3rd", "configINI": "Visibility:bHipFire3rd", "default": 0 }]
+				},
+                "10": {
+                    "title": "$Aiming1st",
+                    "enable": 1,
+                    "type": 5,
+                    "mouse": "$Aiming1stMouse",
+                    "vars": [ { "uiTrait": "HUDMainMenu/AimCollision/_VisAim1st", "configINI": "Visibility:bAiming1st", "default": 1 }]
+				},
+                "12": {
+                    "title": "$Aiming3rd",
+                    "enable": 1,
+                    "type": 5,
+                    "mouse": "$Aiming3rdMouse",
+                    "vars": [ { "uiTrait": "HUDMainMenu/AimCollision/_VisAim3rd", "configINI": "Visibility:bAiming3rd", "default": 1 }]
+				},
+                "14": {
+                    "title": "$Scoping",
+                    "enable": 1,
+                    "type": 5,
+                    "mouse": "$ScopingMouse",
+                    "vars": [ { "uiTrait": "HUDMainMenu/AimCollision/_VisScope", "configINI": "Visibility:bScoping", "default": 1 }]
+				},
+                "16": {
+                    "title": "$Animations",
+                    "enable": 1,
+                    "type": 5,
+                    "mouse": "$AnimationsMouse",
+                    "vars": [{ "form": "Goo1", "auxVar": "*_AimCol_INI", "key": 0, "configINI": "Visibility:bAnimations", "default": 0 }]
+				},
+                "18": {
+                    "title": "$Actors",
+                    "enable": 1,
+                    "type": 5,
+                    "mouse": "$ActorsMouse",
+                    "vars": [ { "uiTrait": "HUDMainMenu/AimCollision/_VisActor", "configINI": "Visibility:bActor", "default": 0 }]
+				},
+                "20": {
+                    "title": "$Combat",
+                    "enable": 1,
+                    "type": 5,
+                    "mouse": "$CombatMouse",
+                    "vars": [ { "uiTrait": "HUDMainMenu/AimCollision/_VisCombat", "configINI": "Visibility:bCombat", "default": 0 }]
+				}
+            }
+        }
+    }
+}
