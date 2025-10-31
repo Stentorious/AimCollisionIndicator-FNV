@@ -29,7 +29,7 @@ if GetPluginVersion "UI Organizer Plugin" < 230
 endif
 
 ; Load INI settings
-SetUIFloatAlt "HUDMainMenu\AimCollision\_Icon" (GetINIFloat_Cached "Indicator:iType" "Stentorious\AimCollisionIndicator.ini" 0)
+SetUIFloatAlt "HUDMainMenu\AimCollision\_Icon" (GetINIFloat_Cached "Indicator:iStyle" "Stentorious\AimCollisionIndicator.ini" 0)
 SetUIFloatAlt "HUDMainMenu\AimCollision\_Scale" (Clamp (GetINIFloat_Cached "Indicator:fScale" "Stentorious\AimCollisionIndicator.ini" 1.0) 0.5 2)
 SetUIFloatAlt "HUDMainMenu\AimCollision\_Alpha" (Clamp (GetINIFloat_Cached "Indicator:fAlpha" "Stentorious\AimCollisionIndicator.ini" 1.0) 0.1 1)
 SetUIFloatAlt "HUDMainMenu\AimCollision\systemcolor" (GetINIFloat_Cached "Color:iSystemcolor" "Stentorious\AimCollisionIndicator.ini" 2)
