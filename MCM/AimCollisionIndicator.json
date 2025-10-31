@@ -130,7 +130,7 @@
 					"enable": 1,
 					"type": 5,
 					"mouse": "$AnimationsMouse",
-					"vars": [{ "form": "Goo1", "auxVar": "*_AimCol_INI", "key": 0, "configINI": "Visibility:bAnimations", "default": 0 }]
+					"vars": [{ "form": "Goo1", "auxVar": "*AimCol_INI", "key": 0, "configINI": "Visibility:bAnimations", "default": 0 }]
 				},
 				"18": {
 					"title": "$Actors",

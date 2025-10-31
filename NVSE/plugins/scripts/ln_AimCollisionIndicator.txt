@@ -45,7 +45,7 @@ SetUIFloatAlt "HUDMainMenu\AimCollision\_VisActor" (eval GetINIFloat_Cached "Vis
 SetUIFloatAlt "HUDMainMenu\AimCollision\_VisCombat" (eval GetINIFloat_Cached "Visibility:bCombat" "Stentorious\AimCollisionIndicator.ini" 0)
 SetUIFloatAlt "HUDMainMenu\AimCollision\_DistMax" (Clamp (GetINIFloat_Cached "Visibility:fDistance" "Stentorious\AimCollisionIndicator.ini" 1.5) 1 25)
 SetUIFloatAlt "HUDMainMenu\AimCollision\_JDC" (eval GetINIFloat_Cached "Indicator:bJDCSupport" "Stentorious\AimCollisionIndicator.ini" 0)
-Goo1.AuxVarSetFlt "*_AimCol_INI" (eval GetINIFloat_Cached "Visibility:bWeaponAnimations" "Stentorious\AimCollisionIndicator.ini" 0) 0
+Goo1.AuxVarSetFlt "*AimCol_INI" (eval GetINIFloat_Cached "Visibility:bWeaponAnimations" "Stentorious\AimCollisionIndicator.ini" 0) 0
 
 ; Update indictor on (un)equip
 SetEventHandler "OnEquip" (CompileScript "AimCollisionIndicator\OnEquip.gek") "first"::Player
