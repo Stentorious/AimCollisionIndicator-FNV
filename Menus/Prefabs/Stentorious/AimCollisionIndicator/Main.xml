@@ -106,7 +106,14 @@
 	<_VisActor> 1 </_VisActor>
 	<_VisCombat> 1 </_VisCombat>
 	<_VisPA> 1 </_VisPA>
-	<_JDC> 0 </_JDC>
+
+	<!-- JDC Support -->
+	<_JDCExists> 0 </_JDCExists>
+	<_JDCSupport> 0 </_JDCSupport>
+	<_JDC>
+		<copy src="me()" trait="_JDCExists"/>
+		<and src="me()" trait="_JDCSupport"/>
+	</_JDC>
 
 	<!-- Distance calc -->
 	<_Dist> 1 </_Dist>
