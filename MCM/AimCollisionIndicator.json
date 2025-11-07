@@ -26,7 +26,7 @@
 					"type": 1,
 					"enable": 1,
 					"mouse": "$IconStyleMouse",
-					"vars": [ { "uiTrait": "HUDMainMenu/AimCollision/_Icon", "configINI": "Indicator:iStyle", "default": 0 }],
+					"vars": [ { "uiTrait": "HUDMainMenu/AimCollision/_Icon", "configINI": "Indicator:iStyle", "default": 0 } ],
 					"strings": [ "$Cross", "$Circle", "$Dot" ]
 				},
 				"5": {
@@ -34,7 +34,7 @@
 					"type": 2.5,
 					"enable": 1,
 					"mouse": "$IconScaleMouse",
-					"vars": [ { "uiTrait": "HUDMainMenu/AimCollision/_Scale", "configINI": "Indicator:fScale", "default": 1 }],
+					"vars": [ { "uiTrait": "HUDMainMenu/AimCollision/_Scale", "configINI": "Indicator:fScale", "default": 1 } ],
 					"scale": { "valueDecimal": 2, "valueIncrement": 0.01, "valueMin": 0.5, "valueMax": 2 }
 				},
 				"7": {
@@ -42,7 +42,7 @@
 					"type": 2.5,
 					"enable": 1,
 					"mouse": "$IconAlphaMouse",
-					"vars": [ { "uiTrait": "HUDMainMenu/AimCollision/_Alpha", "configINI": "Indicator:fAlpha", "default": 1 }],
+					"vars": [ { "uiTrait": "HUDMainMenu/AimCollision/_Alpha", "configINI": "Indicator:fAlpha", "default": 1 } ],
 					"scale": { "valueDecimal": 2, "valueIncrement": 0.01, "valueMin": 0.1, "valueMax": 1 }
 				},
 				"9": {
@@ -50,7 +50,7 @@
 					"type": 1,
 					"enable": 1,
 					"mouse": "$IconColorMouse",
-					"vars": [{ "uiTrait": "HUDMainMenu/AimCollision/systemcolor", "configINI": "Color:iSystemcolor", "default": 2 }],
+					"vars": [{ "uiTrait": "HUDMainMenu/AimCollision/systemcolor", "configINI": "Color:iSystemcolor", "default": 2 } ],
 					"strings": [ "$Custom", "$HUD", "$HUDAlt", "$Terminal", "$PipBoy", "$PauseMenu"]
 				},
 				"11": {
@@ -74,7 +74,7 @@
 					"enable": 1,
 					"type": 5,
 					"mouse": "$JDCMouse",
-					"vars": [ { "uiTrait": "HUDMainMenu/AimCollision/_JDC", "configINI": "Indicator:bJDCSupport", "default": 0 }]
+					"vars": [ { "uiTrait": "HUDMainMenu/AimCollision/_JDC", "configINI": "Indicator:bJDCSupport", "default": 0 } ]
 				},
 				"2": {
 					"title": "$Visibility",
@@ -87,64 +87,65 @@
 					"type": 2,
 					"mouse": "$DistanceMouse",
 					"suffix": "m",
-					"vars": [ { "uiTrait": "HUDMainMenu/AimCollision/_DistMax", "configINI": "Visibility:fDistance", "default": 1.5 }],
+					"vars": [ { "uiTrait": "HUDMainMenu/AimCollision/_DistMax", "configINI": "Visibility:fDistance", "default": 1.5 } ],
 					"scale": { "valueDecimal": 1, "valueIncrement": 0.5, "valueMin": 1, "valueMax": 25, "suffix": "m" }
 				},
 				"6": {
+					"title": "$Actors",
+					"enable": 1,
+					"type": 1,
+					"mouse": "$ActorsMouse",
+					"vars": [ { "uiTrait": "HUDMainMenu/AimCollision/_VisActor", "configINI": "Visibility:iActor", "default": 1 } ],
+					"strings": [ "$None", "$Friendly", "$All" ]
+				},
+				"8": {
 					"title": "$HipFire1st",
 					"enable": 1,
 					"type": 5,
 					"mouse": "$HipFire1stMouse",
-					"vars": [ { "uiTrait": "HUDMainMenu/AimCollision/_VisHip1st", "configINI": "Visibility:bHipFire1st", "default": 1 }]
+					"vars": [ { "uiTrait": "HUDMainMenu/AimCollision/_VisHip1st", "configINI": "Visibility:bHipFire1st", "default": 1 } ]
 				},
-				"8": {
+				"10": {
 					"title": "$HipFire3rd",
 					"enable": 1,
 					"type": 5,
 					"mouse": "$HipFire3rdMouse",
-					"vars": [ { "uiTrait": "HUDMainMenu/AimCollision/_VisHip3rd", "configINI": "Visibility:bHipFire3rd", "default": 0 }]
+					"vars": [ { "uiTrait": "HUDMainMenu/AimCollision/_VisHip3rd", "configINI": "Visibility:bHipFire3rd", "default": 0 } ]
 				},
-				"10": {
+				"12": {
 					"title": "$Aiming1st",
 					"enable": 1,
 					"type": 5,
 					"mouse": "$Aiming1stMouse",
-					"vars": [ { "uiTrait": "HUDMainMenu/AimCollision/_VisAim1st", "configINI": "Visibility:bAiming1st", "default": 1 }]
+					"vars": [ { "uiTrait": "HUDMainMenu/AimCollision/_VisAim1st", "configINI": "Visibility:bAiming1st", "default": 1 } ]
 				},
-				"12": {
+				"14": {
 					"title": "$Aiming3rd",
 					"enable": 1,
 					"type": 5,
 					"mouse": "$Aiming3rdMouse",
-					"vars": [ { "uiTrait": "HUDMainMenu/AimCollision/_VisAim3rd", "configINI": "Visibility:bAiming3rd", "default": 1 }]
+					"vars": [ { "uiTrait": "HUDMainMenu/AimCollision/_VisAim3rd", "configINI": "Visibility:bAiming3rd", "default": 1 } ]
 				},
-				"14": {
+				"16": {
 					"title": "$Scoping",
 					"enable": 1,
 					"type": 5,
 					"mouse": "$ScopingMouse",
-					"vars": [ { "uiTrait": "HUDMainMenu/AimCollision/_VisScope", "configINI": "Visibility:bScoping", "default": 1 }]
+					"vars": [ { "uiTrait": "HUDMainMenu/AimCollision/_VisScope", "configINI": "Visibility:bScoping", "default": 1 } ]
 				},
-				"16": {
+				"18": {
 					"title": "$Animations",
 					"enable": 1,
 					"type": 5,
 					"mouse": "$AnimationsMouse",
-					"vars": [{ "form": "Goo1", "auxVar": "*AimCol_INI", "key": 0, "configINI": "Visibility:bAnimations", "default": 0 }]
-				},
-				"18": {
-					"title": "$Actors",
-					"enable": 1,
-					"type": 5,
-					"mouse": "$ActorsMouse",
-					"vars": [ { "uiTrait": "HUDMainMenu/AimCollision/_VisActor", "configINI": "Visibility:bActor", "default": 0 }]
+					"vars": [{ "form": "Goo1", "auxVar": "*AimCol_INI", "key": 0, "configINI": "Visibility:bAnimations", "default": 0 } ]
 				},
 				"20": {
 					"title": "$Combat",
 					"enable": 1,
 					"type": 5,
 					"mouse": "$CombatMouse",
-					"vars": [ { "uiTrait": "HUDMainMenu/AimCollision/_VisCombat", "configINI": "Visibility:bCombat", "default": 0 }]
+					"vars": [ { "uiTrait": "HUDMainMenu/AimCollision/_VisCombat", "configINI": "Visibility:bCombat", "default": 0 } ]
 				}
 			}
 		}

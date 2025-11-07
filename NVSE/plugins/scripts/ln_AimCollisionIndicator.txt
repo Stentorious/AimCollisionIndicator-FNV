@@ -41,7 +41,7 @@ SetUIFloatAlt "HUDMainMenu\AimCollision\_VisHip3rd" (eval GetINIFloat_Cached "Vi
 SetUIFloatAlt "HUDMainMenu\AimCollision\_VisAim1st" (eval GetINIFloat_Cached "Visibility:bAiming1st" "Stentorious\AimCollisionIndicator.ini" 1)
 SetUIFloatAlt "HUDMainMenu\AimCollision\_VisAim3rd" (eval GetINIFloat_Cached "Visibility:bAiming3rd" "Stentorious\AimCollisionIndicator.ini" 1)
 SetUIFloatAlt "HUDMainMenu\AimCollision\_VisScope" (eval GetINIFloat_Cached "Visibility:bScoped" "Stentorious\AimCollisionIndicator.ini" 1)
-SetUIFloatAlt "HUDMainMenu\AimCollision\_VisActor" (eval GetINIFloat_Cached "Visibility:bActor" "Stentorious\AimCollisionIndicator.ini" 0)
+SetUIFloatAlt "HUDMainMenu\AimCollision\_VisActor" (Clamp (GetINIFloat_Cached "Visibility:iActor" "Stentorious\AimCollisionIndicator.ini" 1) 0 2)
 SetUIFloatAlt "HUDMainMenu\AimCollision\_VisCombat" (eval GetINIFloat_Cached "Visibility:bCombat" "Stentorious\AimCollisionIndicator.ini" 0)
 SetUIFloatAlt "HUDMainMenu\AimCollision\_DistMax" (Clamp (GetINIFloat_Cached "Visibility:fDistance" "Stentorious\AimCollisionIndicator.ini" 1.5) 1 25)
 SetUIFloatAlt "HUDMainMenu\AimCollision\_JDC" (eval GetINIFloat_Cached "Indicator:bJDCSupport" "Stentorious\AimCollisionIndicator.ini" 0)

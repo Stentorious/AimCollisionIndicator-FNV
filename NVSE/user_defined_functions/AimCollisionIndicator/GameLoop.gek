@@ -1,5 +1,5 @@
 int iPOV
-int iAim
+int iTemp
 float fOffset
 float fDistance
 float fDistanceMax
@@ -87,15 +87,22 @@ Begin Function {}
 
 	; Aiming state visibility
 	if eval GetPCUsingScope
-		iAim = 2
+		iTemp = 2
 	elseif eval GetPCUsingIronSights || IsControlPressed 6
-		iAim = 1
+		iTemp = 1
 	endif
-	SetUIFloatAlt "HUDMainMenu\AimCollision\_Aiming" iAim
+	SetUIFloatAlt "HUDMainMenu\AimCollision\_Aiming" iTemp
 	SetUIFloatAlt "HUDMainMenu\AimCollision\_POV" (iPOV - 1)
 
 	; Actor visibility
-	SetUIFloatAlt "HUDMainMenu\AimCollision\_Actor" (eval IsReference (rCrosshair = GetCrosshairRef) && (rCrosshair.GetType == 42 || rCrosshair.GetType == 43))
+	iTemp = 0
+	if eval fDistance > 0
+		if eval (IsReference (rCrosshair = GetCrosshairRef) || IsReference (rCrosshair = ObjectUnderReticle 0 (fDistance + 80))) && (rCrosshair.GetType == 42 || rCrosshair.GetType == 43)
+			iTemp = 1
+			SetUIFloatAlt "HUDMainMenu\AimCollision\_Hostile" (rCrosshair.IsCompassHostile)
+		endif
+	endif
+	SetUIFloatAlt "HUDMainMenu\AimCollision\_Actor" iTemp
 
 	; Combat
 	SetUIFloatAlt "HUDMainMenu\AimCollision\_Combat" (eval Player.IsInCombat)

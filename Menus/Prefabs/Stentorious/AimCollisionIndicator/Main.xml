@@ -9,8 +9,11 @@
 			<lt src="me()" trait="_DistMaxUnit"/>
 		</and>
 		<and>
-			<copy src="me()" trait="_Actor"/> <eq> 0 </eq>
-			<or src="me()" trait="_VisActor"/>
+			<copy src="me()" trait="_VisActor"/> <eq> 1 </eq>
+			<and src="me()" trait="_Actor"/>
+			<and> <not src="me()" trait="_Hostile"/> </and>
+			<or> <copy src="me()" trait="_VisActor"/> <eq> 2 </eq> </or>
+			<or> <not src="me()" trait="_Actor"/> </or>
 		</and>
 		<and>
 			<copy src="me()" trait="_Aiming"/> <neq> 0 </neq>
@@ -93,6 +96,7 @@
 	<_POV> 0 </_POV>
 	<_Aiming> 0 </_Aiming>
 	<_Actor> 0 </_Actor>
+	<_Hostile> 0 </_Hostile>
 	<_Combat> 0 </_Combat>
 	<_VisHip1st> 1 </_VisHip1st>
 	<_VisAim1st> 1 </_VisAim1st>
