@@ -5,45 +5,45 @@
 		<or src="ActionPoints" trait="visible" />
 		<or src="HitPoints" trait="visible" />
 		<and>
-			<copy src="me()" trait="_Dist"/>
-			<lt src="me()" trait="_DistMaxUnit"/>
+			<copy src="me()" trait="_Dist" />
+			<lt src="me()" trait="_DistMaxUnit" />
 		</and>
 		<and>
-			<copy src="me()" trait="_VisActor"/> <eq> 1 </eq>
-			<and src="me()" trait="_Actor"/>
-			<and> <not src="me()" trait="_Hostile"/> </and>
-			<or> <copy src="me()" trait="_VisActor"/> <eq> 2 </eq> </or>
-			<or> <not src="me()" trait="_Actor"/> </or>
+			<copy src="me()" trait="_VisActor" /> <eq> 1 </eq>
+			<and src="me()" trait="_Actor" />
+			<and> <not src="me()" trait="_Hostile" /> </and>
+			<or> <copy src="me()" trait="_VisActor" /> <eq> 2 </eq> </or>
+			<or> <not src="me()" trait="_Actor" /> </or>
 		</and>
 		<and>
-			<copy src="me()" trait="_Aiming"/> <neq> 0 </neq>
+			<copy src="me()" trait="_Aiming" /> <neq> 0 </neq>
 			<or>
-				<copy src="me()" trait="_POV"/>
-				<and src="me()" trait="_VisHip1st"/>
+				<copy src="me()" trait="_POV" />
+				<and src="me()" trait="_VisHip1st" />
 			</or>
 			<or>
-				<not src="me()" trait="_POV"/>
-				<and src="me()" trait="_VisHip3rd"/>
-			</or>
-		</and>
-		<and>
-			<copy src="me()" trait="_Aiming"/> <neq> 1 </neq>
-			<or>
-				<copy src="me()" trait="_POV"/>
-				<and src="me()" trait="_VisAim1st"/>
-			</or>
-			<or>
-				<not src="me()" trait="_POV"/>
-				<and src="me()" trait="_VisAim3rd"/>
+				<not src="me()" trait="_POV" />
+				<and src="me()" trait="_VisHip3rd" />
 			</or>
 		</and>
 		<and>
-			<copy src="me()" trait="_Aiming"/> <neq> 2 </neq>
-			<or src="me()" trait="_VisScope"/>
+			<copy src="me()" trait="_Aiming" /> <neq> 1 </neq>
+			<or>
+				<copy src="me()" trait="_POV" />
+				<and src="me()" trait="_VisAim1st" />
+			</or>
+			<or>
+				<not src="me()" trait="_POV" />
+				<and src="me()" trait="_VisAim3rd" />
+			</or>
 		</and>
 		<and>
-			<not src="me()" trait="_VisCombat"/>
-			<or src="me()" trait="_Combat"/>
+			<copy src="me()" trait="_Aiming" /> <neq> 2 </neq>
+			<or src="me()" trait="_VisScope" />
+		</and>
+		<and>
+			<not src="me()" trait="_VisCombat" />
+			<or src="me()" trait="_Combat" />
 		</and>
 		<and src="me()" trait="_VisPA" />
 	</visible>
@@ -57,28 +57,28 @@
 	</alpha>
 	<depth> 0 </depth>
 	<x>
-		<copy src="me()" trait="_x"/>
-		<mul src="screen()" trait="width"/>
+		<copy src="me()" trait="_x" />
+		<mul src="screen()" trait="width" />
 		<sub>
-			<copy src="me()" trait="width"/>
+			<copy src="me()" trait="width" />
 			<div> 2 </div>
 		</sub>
 	</x>
 	<y>
-		<copy src="me()" trait="_y"/>
-		<mul src="screen()" trait="height"/>
+		<copy src="me()" trait="_y" />
+		<mul src="screen()" trait="height" />
 		<sub>
-			<copy src="me()" trait="height"/>
+			<copy src="me()" trait="height" />
 			<div> 2 </div>
 		</sub>
 	</y>
 	<width>
 		<copy> 14 </copy>
-		<mul src="me()" trait="_Scale"/>
+		<mul src="me()" trait="_Scale" />
 	</width>
 	<height>
 		<copy> 14 </copy>
-		<mul src="me()" trait="_Scale"/>
+		<mul src="me()" trait="_Scale" />
 	</height>
 	<zoom> &scale; </zoom>
 	<systemcolor> 0 </systemcolor>
@@ -111,14 +111,14 @@
 	<_JDCExists> 0 </_JDCExists>
 	<_JDCSupport> 0 </_JDCSupport>
 	<_JDC>
-		<copy src="me()" trait="_JDCExists"/>
-		<and src="me()" trait="_JDCSupport"/>
+		<copy src="me()" trait="_JDCExists" />
+		<and src="me()" trait="_JDCSupport" />
 	</_JDC>
 
 	<!-- Distance calc -->
 	<_Dist> 1 </_Dist>
 	<_DistMaxUnit>
-		<copy src="me()" trait="_DistMax"/>
+		<copy src="me()" trait="_DistMax" />
 		<mul> 69.99104 </mul>
 	</_DistMaxUnit>
 	<_DistMax> 1 </_DistMax>
@@ -129,8 +129,8 @@
 	<_filename_1> Interface\Stentorious\AimCollisionIndicator\Circle.dds </_filename_1>
 	<_filename_2> Interface\Stentorious\AimCollisionIndicator\Dot.dds </_filename_2>
 	<filename>
-		<copy src="me()" trait="_Icon"/>
-		<copy src="me()" trait="_filename_"/>
+		<copy src="me()" trait="_Icon" />
+		<copy src="me()" trait="_filename_" />
 	</filename>
 
 </image>
