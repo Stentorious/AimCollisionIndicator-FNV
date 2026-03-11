@@ -34,15 +34,15 @@ Begin Function {}
 	endif
 
 	; Misc
-	iPOV = (eval IsPC1stPerson) + 1
-	fOffset = (Goo1.AuxVarGetFlt "*AimColOffset" (iPOV - 1))
+	iPOV = eval IsPC1stPerson
+	fOffset = Goo1.AuxVarGetFlt "*AimColOffset" iPOV
 	fDistanceMax = GetUIFloatAlt "HUDMainMenu\AimCollision\_DistMaxUnit"
 
 	; Get ProjectileNode position
-	Player.GetNifTransAlt (sNode) (fBlockPosX) (fBlockPosY) (fBlockPosZ) 1 iPOV
+	Player.GetNifTransAlt (sNode) (fBlockPosX) (fBlockPosY) (fBlockPosZ) 1 (iPOV + 1)
 
 	; Get raycast rotation
-	if eval iPOV == 2
+	if eval iPOV
 		Player.GetNifRotAlt "Bip01 Looking" (fBlockRotX) (fBlockRotY) (fBlockRotZ) 3 2
 
 		; B42 Lean compatibility
@@ -60,7 +60,7 @@ Begin Function {}
 	fDistance = GetVector3DDistance fRayPosX fRayPosY fRayPosZ fBlockPosX fBlockPosY fBlockPosZ
 
 	if eval fDistance <= (fOffset - 0.1)
-		if iPOV == 2
+		if eval iPOV
 			fRayPosX = fBlockPosX
 			fRayPosY = fBlockPosY
 			fRayPosZ = fBlockPosZ
@@ -92,7 +92,7 @@ Begin Function {}
 		iTemp = 1
 	endif
 	SetUIFloatAlt "HUDMainMenu\AimCollision\_Aiming" iTemp
-	SetUIFloatAlt "HUDMainMenu\AimCollision\_POV" (iPOV - 1)
+	SetUIFloatAlt "HUDMainMenu\AimCollision\_POV" iPOV
 
 	; Actor visibility
 	iTemp = 0

@@ -18,22 +18,22 @@
 		<and>
 			<copy src="me()" trait="_Aiming"/> <neq> 0 </neq>
 			<or>
-				<copy src="me()" trait="_POV"/> <eq> 1 </eq>
+				<copy src="me()" trait="_POV"/>
 				<and src="me()" trait="_VisHip1st"/>
 			</or>
 			<or>
-				<copy src="me()" trait="_POV"/> <eq> 0 </eq>
+				<not src="me()" trait="_POV"/>
 				<and src="me()" trait="_VisHip3rd"/>
 			</or>
 		</and>
 		<and>
 			<copy src="me()" trait="_Aiming"/> <neq> 1 </neq>
 			<or>
-				<copy src="me()" trait="_POV"/> <eq> 1 </eq>
+				<copy src="me()" trait="_POV"/>
 				<and src="me()" trait="_VisAim1st"/>
 			</or>
 			<or>
-				<copy src="me()" trait="_POV"/> <eq> 0 </eq>
+				<not src="me()" trait="_POV"/>
 				<and src="me()" trait="_VisAim3rd"/>
 			</or>
 		</and>
@@ -42,7 +42,7 @@
 			<or src="me()" trait="_VisScope"/>
 		</and>
 		<and>
-			<copy src="me()" trait="_VisCombat"/> <eq> 0 </eq>
+			<not src="me()" trait="_VisCombat"/>
 			<or src="me()" trait="_Combat"/>
 		</and>
 		<and src="me()" trait="_VisPA" />
